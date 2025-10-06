@@ -1,0 +1,13 @@
+## 📸 Evidências
+
+### 1. Validação do Template CloudFormation  
+![Validação do Template](evidencias/validacao-template.png)  
+Explicação: Validação do arquivo antes de criar o stack.
+
+### 2. Criação do Stack via AWS CLI  
+![Criação do Stack](evidencias/criacao-stack.png)  
+Explicação: Comando executado para criar o stack.
+
+### 3. Visualização dos Recursos no Console AWS  
+![Console AWS](evidencias/console-aws.png)  
+Explicação: Stack criado e recursos ativos no Console AWS.
