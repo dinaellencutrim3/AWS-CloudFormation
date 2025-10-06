@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  Template CloudFormation - Desafio DIO
+  Infraestrutura simples contendo um Bucket S3 e uma Instância EC2.
+
+Parameters:
+  KeyName:
+    Description: Nome do par de chaves EC2 existente na sua conta AWS
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: O par de chaves deve existir na região selecionada.
+
+  InstanceType:
+    Description: Tipo da instância EC2
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+      - t3.micro
+      - t3.small
+    ConstraintDescription: Deve ser um tipo de instância EC2 válido.
+
+Resources:
+  S3BucketDinaellen:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: dinaellen-cloudformation-bucket
+      Tags:
+        - Key: Projeto
+          Value: Desafio-DIO
+        - Key: CriadoPor
+          Value: Dinaellen Cutrim
+
+  EC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Permitir acesso SSH (porta 22)
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Projeto
+          Value: Desafio-DIO
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: ami-0c55b159cbfafe1f0  # Amazon Linux 2 (região us-east-1)
+      SecurityGroupIds:
+        - !Ref EC2SecurityGroup
+      Tags:
+        - Key: Name
+          Value: EC2-Dinaellen
+        - Key: Projeto
+          Value: Desafio-DIO
+
+Outputs:
+  BucketName:
+    Description: Nome do bucket S3 criado
+    Value: !Ref S3BucketDinaellen
+
+  EC2InstanceId:
+    Description: ID da instância EC2 criada
+    Value: !Ref EC2Instance
+
+adiciona template.yaml CloudFormation
+
