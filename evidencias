@@ -1,13 +1,30 @@
 ## 📸 Evidências
 
 ### 1. Validação do Template CloudFormation  
-![Validação do Template](evidencias/validacao-template.png)  
-Explicação: Validação do arquivo antes de criar o stack.
+![Validação do Template](https://via.placeholder.com/600x400?text=Validação+do+Template)  
+A validação garante que a sintaxe e a estrutura do arquivo estão corretas antes de criar o stack.
 
 ### 2. Criação do Stack via AWS CLI  
-![Criação do Stack](evidencias/criacao-stack.png)  
-Explicação: Comando executado para criar o stack.
+![Criação do Stack](https://via.placeholder.com/600x400?text=Criação+do+Stack)  
+Comando executado:  
+`aws cloudformation create-stack --stack-name stack-dinaellen --template-body file://template.yaml --parameters ParameterKey=KeyName,ParameterValue=<SEU_KEYNAME>`
 
 ### 3. Visualização dos Recursos no Console AWS  
-![Console AWS](evidencias/console-aws.png)  
-Explicação: Stack criado e recursos ativos no Console AWS.
+![Console AWS](https://via.placeholder.com/600x400?text=Console+AWS)  
+Stack criado com Bucket S3 e Instância EC2 conforme template.
+
+---
+
+## 🛠️ Detalhes Técnicos
+
+- **Validação do Template:**  
+  Usando o comando de validação, é possível detectar erros antes da execução.
+- **Criação do Stack:**  
+  O comando de criação pede parâmetros obrigatórios como o KeyName para a instância EC2.
+- **Recursos Gerados:**  
+  - Bucket S3 com tags personalizadas.
+  - Instância EC2 Linux com segurança SSH.
+  - Security Group liberando porta 22 (SSH) para acesso remoto.
+- **Boas Práticas:**  
+  - Remover stack após uso para evitar cobranças.
+  - Restringir o Security Group para seu IP específico.
